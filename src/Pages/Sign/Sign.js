@@ -9,7 +9,7 @@ import auth from '@react-native-firebase/auth'
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 
-import styles from './bananeSignStyle'
+import styles from './SignStyle'
 
 const initialFormValues = {
     usermail: '',
@@ -19,6 +19,7 @@ const initialFormValues = {
 
 const BanSign = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
+    
     function handleLogin() {
         navigation.goBack();
     }
@@ -55,7 +56,7 @@ const BanSign = ({ navigation }) => {
     }
 
     return (
-        <ImageBackground source={require('../../../Assets/cr2.png')} style = {styles.backgroundImage}>
+        <ImageBackground source={require('../../Assets/cr2.png')} style = {styles.backgroundImage}>
 
             <SafeAreaView style={styles.body_container}>
                 <Text style={styles.header}>bana ne!</Text>
