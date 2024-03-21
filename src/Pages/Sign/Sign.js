@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, SafeAreaView, ImageBackground } from "react-native";
 import { Formik } from "formik";
-import autherrorMessage from '../../errorMessages'
+import autherrorMessage from '../../utils/errorMessages'
 import { showMessage } from "react-native-flash-message";
 import { useState } from "react";
 import auth from '@react-native-firebase/auth'
