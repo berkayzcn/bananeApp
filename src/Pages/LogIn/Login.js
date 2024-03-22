@@ -63,6 +63,7 @@ const LogIn = ({navigation}) => {
                                 value={values.password}
                                 girilenDeger={handleChange('password')}
                                 placeHolder="Parola Giriniz"
+                                isSecure={true}
                             />
                             <Button text='Giris Yap' theme="primary" onPress={handleSubmit} />
                         </>

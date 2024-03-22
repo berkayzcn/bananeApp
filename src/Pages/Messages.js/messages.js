@@ -14,65 +14,59 @@ import styless from './messagesStyle'
 const Messages = () => {
     const [ModalVisible, setModalVisible] = useState(false)
 
-    const[contentList, setContentList] = useState([])
-    
+    const [contentList, setContentList] = useState([])
+
     function toggleModal() {
-        setModalVisible(!ModalVisible) 
+        setModalVisible(!ModalVisible)
     }
 
-    useEffect(()=> { //veri cekme
+    useEffect(() => { //veri cekme
         database()
-        .ref('messages/')
-        .on('value', snapshot => {
-            const contentData = snapshot.val();
-          
-            //eger icinde hicbir veri yoksa hata almamk icin
-            // if(!contentData){
-            //     return
-            // }
-
-            const parsedData = parseContentData(contentData || {})
-            setContentList(parsedData)
-        })
-    },[])
+            .ref('messages/')
+            .on('value', snapshot => {
+                const contentData = snapshot.val();
+                const parsedData = parseContentData(contentData || {})
+                setContentList(parsedData)
+            })
+    }, [])
 
     function handleSendContent(content) { //icerik gondermek istedigimiz zaman
         toggleModal();
         sendContent(content)
     }
 
-    function sendContent(content){ //veri yukleme
+    function sendContent(content) { //veri yukleme
         const userMail = auth().currentUser.email;
 
         const contentObject = {
             text: content,
             username: userMail.split('@')[0],
             date: (new Date()).toISOString(),
-            dislike : 0,
+            dislike: 0,
         };
         database().ref('messages/').push(contentObject);
     }
 
-    function handleBanane(item){
+    function handleBanane(item) {
         database()
-        .ref(`messages/${item.id}/`)
-        .update({dislike: item.dislike + 1})
+            .ref(`messages/${item.id}/`)
+            .update({ dislike: item.dislike + 1 })
     }
 
-    const renderContent = ({item}) => (
-    <MessageCard message={item} onBanane={()=> handleBanane(item)}/>
+    const renderContent = ({ item }) => (
+        <MessageCard message={item} onBanane={() => handleBanane(item)} />
     );
 
-    return(
-        <ImageBackground source={require('../../Assets/cr2.png')} style = {styless.backgroundImage}>
+    return (
+        <ImageBackground source={require('../../Assets/cr2.png')} style={styless.backgroundImage}>
             <SafeAreaView style={styless.container}>
-            
-            <FlatList
-                data={contentList}
-                renderItem={renderContent}
-            />
-            
-            <View style={{ flex: 1 }}>
+
+                <FlatList
+                    data={contentList}
+                    renderItem={renderContent}
+                />
+
+                <View style={{ flex: 1 }}>
                     <PlusButton icon="plus" onPress={toggleModal} />
                     <ModelInput
                         visible={ModalVisible}
