@@ -70,6 +70,8 @@ const Profile = () => {
         )
     }
 
+
+
     const ImgComp = () => {
         if (selectedImage)
             return <Image source={{ uri: selectedImage }} style={styles.Image} />

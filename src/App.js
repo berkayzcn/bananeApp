@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, SafeAreaView } from "react-native";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+//import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import auth from '@react-native-firebase/auth'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FlashMessage from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator()
+//const Drawer = createDrawerNavigator()
 
 import Profile from "./Pages/Profile";
 import LogIn from "./Pages/LogIn";
@@ -32,6 +35,16 @@ const App = () => {
       </Stack.Navigator>
     )
   }
+
+  // const DrawerStack = () => {
+  //   return(
+  //     <Drawer.Navigator>
+  //       <Drawer.Screen name="Profile" component={Profile}/>
+  //       <Drawer.Screen name="LogOut" component={Lo}/>
+
+  //     </Drawer.Navigator>
+  //   )
+  // }
 
   // const goToProfile = (props) => {
   //   const { navigation } = props
@@ -65,6 +78,7 @@ const App = () => {
             headerTintColor: 'black',
             headerRight: () => (
               <Icon name="logout" size={30} color="#e0752d" onPress={() => auth().signOut()} />
+              //<Icon name="logout" size={30} color="#e0752d" onPress={() => navigation.openDrawer} />
             ),
             headerLeft: () => (
                       //<Icon name="account" size={30} color="darkgreen" onPress={() => navigate('Profile')}/>
