@@ -10,11 +10,13 @@ import MessageCard from "../../Components/MessageCard";
 import parseContentData from "../../utils/parseContentData";
 
 import styless from './messagesStyle'
+import { set } from "date-fns/fp/set";
 
 const Messages = () => {
     const [ModalVisible, setModalVisible] = useState(false)
 
     const [contentList, setContentList] = useState([])
+
 
     function toggleModal() {
         setModalVisible(!ModalVisible)
