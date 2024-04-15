@@ -6,6 +6,7 @@ import { TouchableOpacity } from "react-native";
 
 import { formatDistance, parseISO } from "date-fns";
 import { tr } from 'date-fns/locale' //dil ayarlamak 
+import { useNavigation } from "@react-navigation/native";
 
 const MessageCard = ({ message, onBanane }) => {
 
@@ -14,8 +15,7 @@ const MessageCard = ({ message, onBanane }) => {
         //locale: tr,
     })
 
-    //  const karakterSayısı = 5;
-    //  const kisaltilmisVeri = 
+    const navigation = useNavigation(); //navigation islemini yapabilmek icin
 
     return (
         <View style={styles.container}>
@@ -26,7 +26,7 @@ const MessageCard = ({ message, onBanane }) => {
                 <Text style={styles.date}>{formattedDate}</Text>
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message.id)}>
                 <Text style={styles.title}>{message.text.substring(0, 14) + '...'}</Text>
             </TouchableOpacity>
 

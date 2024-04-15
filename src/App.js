@@ -17,6 +17,8 @@ import LogIn from "./Pages/LogIn";
 import Sign from "./Pages/Sign";
 import Messages from "./Pages/Messages.js/messages";
 
+import MessageDetail from "./Pages/MessageDetaills/messageDetail";
+
 const App = () => {
 
   const [userSession, setUserSession] = useState();
@@ -92,6 +94,7 @@ const App = () => {
         }
 
       <Stack.Screen name="Profile" component={Profile} options={{ headerShown: true }} /> 
+      <Stack.Screen name="MessageDetail" component={MessageDetail} options={{ headerShown: true }} /> 
 
 
 

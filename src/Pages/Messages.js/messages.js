@@ -65,6 +65,7 @@ const Messages = () => {
 
                 <FlatList
                     data={contentList}
+                   
                     renderItem={renderContent}
                 />
 
