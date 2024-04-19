@@ -26,7 +26,8 @@ const MessageCard = ({ message, onBanane }) => {
                 <Text style={styles.date}>{formattedDate}</Text>
             </View>
 
-            <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message.id)}>
+            {/* <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message.id)}> */}
+            <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message)}>
                 <Text style={styles.title}>{message.text.substring(0, 14) + '...'}</Text>
             </TouchableOpacity>
 
