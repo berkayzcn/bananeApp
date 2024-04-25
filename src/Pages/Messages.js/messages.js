@@ -17,6 +17,9 @@ const Messages = () => {
 
     const [contentList, setContentList] = useState([])
 
+    const [liked, setLiked] = useState(false);
+    const currentUser = auth().currentUser;
+
 
     function toggleModal() {
         setModalVisible(!ModalVisible)
@@ -49,15 +52,71 @@ const Messages = () => {
         database().ref('messages/').push(contentObject);
     }
 
+   
+
+    const checkLikeStatus = () => {
+
+        database()
+            .ref('likes/' + currentUser.uid)
+            .once('value')
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    setLiked(true);
+                }
+            })
+            .catch(error => {
+                console.error('Error getting like status:', error);
+            });
+    };
+
+    const handleLike = () => {
+        if (currentUser) {
+
+            database()
+                .ref('likes/' + currentUser.uid)
+                .set(true)
+                .then(() => {
+                    setLiked(true);
+                })
+                .catch(error => {
+                    console.error('Error setting like status:', error);
+                });
+        }
+    };
+
     function handleBanane(item) {
+        useEffect(() => {
+            if (currentUser) {
+                checkLikeStatus();
+            }
+        }, [currentUser])
+
+
         database()
             .ref(`messages/${item.id}/`)
-            .update({ dislike: item.dislike + 1 })
+          
+            .update({ dislike: item.dislike + 1})
+            .then(()=> {
+                
+                setLiked(true)
+                
+            })
     }
+
+     // function handleBanane(item) {
+
+    //     database()
+    //         .ref(`messages/${item.id}/`)
+    //         .update({ dislike: item.dislike + 1 })
+    // }
+
+
 
     const renderContent = ({ item }) => (
         <MessageCard message={item} onBanane={() => handleBanane(item)} />
     );
+
+
 
     return (
         <ImageBackground source={require('../../Assets/cr2.png')} style={styless.backgroundImage}>
@@ -65,7 +124,7 @@ const Messages = () => {
 
                 <FlatList
                     data={contentList}
-                   
+
                     renderItem={renderContent}
                 />
 

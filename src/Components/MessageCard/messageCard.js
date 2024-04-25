@@ -19,7 +19,7 @@ const MessageCard = ({ message, onBanane }) => {
 
     return (
         <View style={styles.container}>
-            
+
             <View style={styles.inner_container}>
                 <Text style={styles.user}>{message.username}</Text>
                 {/* <Text style={styles.date}>{message.date}</Text> */}
@@ -27,11 +27,18 @@ const MessageCard = ({ message, onBanane }) => {
             </View>
 
             {/* <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message.id)}> */}
-            <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message)}>
+            {/* <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message)}>
+                <Text style={styles.title}>{message.text.substring(0, 14) + '...'}</Text>
+            </TouchableOpacity> */}
+            {/* cekilen verideki mesajin istedighimiz kadar yerini gosterme */}
+
+            <TouchableOpacity onPress={() => navigation.navigate("MessageDetail", message)}>
+            {/* navigation.navigate('HedefEkran', { param1: 'deger1', param2: 'deger2' }) */}
                 <Text style={styles.title}>{message.text.substring(0, 14) + '...'}</Text>
             </TouchableOpacity>
 
-            {/* cekilen verideki mesajin istedighimiz kadar yerini gosterme */}
+
+
             <View style={styles.footer}>
                 <TouchableOpacity style={styles.dislike_container} onPress={onBanane}>
                     {!!message.dislike && ( //message.dislike true ise text gorunur

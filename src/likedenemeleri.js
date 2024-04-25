@@ -47,9 +47,10 @@ const PostScreen = () => {
   return (
     <View style={styles}>
 
+
       <Text>ADSFASDFASDF</Text>
       <Text>ADSFASDFASDF</Text>
-      <Text>ADSFASDFASDF</Text>
+
 
       <Button
         title={liked ? "Liked" : "Like"}

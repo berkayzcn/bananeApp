@@ -18,6 +18,7 @@ import Sign from "./Pages/Sign";
 import Messages from "./Pages/Messages.js/messages";
 
 import MessageDetail from "./Pages/MessageDetaills/messageDetail";
+import userProfile from "./Pages/userProfile";
 
 const App = () => {
 
@@ -95,7 +96,7 @@ const App = () => {
 
       <Stack.Screen name="Profile" component={Profile} options={{ headerShown: true }} /> 
       <Stack.Screen name="MessageDetail" component={MessageDetail} options={{ headerShown: true }} /> 
-
+       <Stack.Screen name="userProfile" component={userProfile}/> 
 
 
       </Stack.Navigator>

@@ -118,7 +118,7 @@ const Profile = () => {
                         <View style={styles.postContainer}>
                             <Text style={styles.darlama}>Dert sayisi</Text>
                             <Text style={styles.darlamaSayisi}>12</Text>
-                            <Buton style={styles.butn} text={"     Darla     "} theme="primary" onPress={goster} />
+                            <Buton style={styles.butn} text={"     Profili Duzenle     "} theme="primary" onPress={goster} />
                             {/* <Button title="tikla" onPress={goster}/>  */}
                         </View>
 
