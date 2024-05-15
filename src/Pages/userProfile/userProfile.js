@@ -2,7 +2,7 @@ import React from "react";
 import { Text, SafeAreaView, View, Image, ImageBackground, Button, Alert, TouchableOpacity, StyleSheet } from "react-native";
 import Buton from "../../Components/Button";
 
-const userProfile = () => {
+const UserProfile = () => {
     
     return(
         <ImageBackground source={require('../../Assets/cr2.png')} style={styles.backgroundImage}>
@@ -43,7 +43,7 @@ const userProfile = () => {
     )
 }
 
-export default userProfile;
+export default UserProfile;
 
 const styles = StyleSheet.create({
     container: {
