@@ -9,11 +9,13 @@ import { tr } from 'date-fns/locale' //dil ayarlamak
 import { useNavigation } from "@react-navigation/native";
 
 const MessageCard = ({ message, onBanane }) => {
-
-    const formattedDate = formatDistance(parseISO(message.date), new Date(), {
-        addSuffix: true,
-        //locale: tr,
-    })
+    console.log("message", message)
+    const formattedDate = message?.date
+        ? formatDistance(parseISO(message?.date), new Date(), {
+            addSuffix: true,
+            //locale: tr,
+        })
+        : ""
 
     const navigation = useNavigation(); //navigation islemini yapabilmek icin
 
@@ -21,7 +23,7 @@ const MessageCard = ({ message, onBanane }) => {
         <View style={styles.container}>
 
             <View style={styles.inner_container}>
-                <Text style={styles.user}>{message.username}</Text>
+                <Text style={styles.user}>{message?.username}</Text>
                 {/* <Text style={styles.date}>{message.date}</Text> */}
                 <Text style={styles.date}>{formattedDate}</Text>
             </View>
@@ -33,17 +35,17 @@ const MessageCard = ({ message, onBanane }) => {
             {/* cekilen verideki mesajin istedighimiz kadar yerini gosterme */}
 
             <TouchableOpacity onPress={() => navigation.navigate("MessageDetail", message)}>
-            {/* navigation.navigate('HedefEkran', { param1: 'deger1', param2: 'deger2' }) */}
-                <Text style={styles.title}>{message.text.substring(0, 14) + '...'}</Text>
+                {/* navigation.navigate('HedefEkran', { param1: 'deger1', param2: 'deger2' }) */}
+                <Text style={styles.title}>{message?.text?.substring(0, 14) + '...'}</Text>
             </TouchableOpacity>
 
 
 
             <View style={styles.footer}>
                 <TouchableOpacity style={styles.dislike_container} onPress={onBanane}>
-                    {!!message.dislike && ( //message.dislike true ise text gorunur
+                    {!!message?.dislike && ( //message.dislike true ise text gorunur
                         <View style={{ marginRight: 3 }}>
-                            <Text style={styles.dislike_count_text}>{message.dislike}</Text>
+                            <Text style={styles.dislike_count_text}>{message?.dislike}</Text>
                         </View>
                     )}
                     <Text style={styles.dislike_text}>
