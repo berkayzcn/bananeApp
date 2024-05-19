@@ -52,7 +52,7 @@ const Messages = () => {
         database().ref('messages/').push(contentObject);
     }
 
-   
+
 
     const checkLikeStatus = () => {
 
@@ -94,16 +94,16 @@ const Messages = () => {
 
         database()
             .ref(`messages/${item.id}/`)
-          
-            .update({ dislike: item.dislike + 1})
-            .then(()=> {
-                
+
+            .update({ dislike: item.dislike + 1 })
+            .then(() => {
+
                 setLiked(true)
-                
+
             })
     }
 
-     // function handleBanane(item) {
+    // function handleBanane(item) {
 
     //     database()
     //         .ref(`messages/${item.id}/`)
@@ -121,12 +121,15 @@ const Messages = () => {
     return (
         <ImageBackground source={require('../../Assets/cr2.png')} style={styless.backgroundImage}>
             <SafeAreaView style={styless.container}>
+                {
+                    contentList.length ?
+                        <FlatList
+                            data={contentList}
 
-                <FlatList
-                    data={contentList}
-
-                    renderItem={renderContent}
-                />
+                            renderItem={renderContent}
+                        />
+                        : null
+                }
 
                 <View style={{ flex: 1 }}>
                     <PlusButton icon="plus" onPress={toggleModal} />
