@@ -35,8 +35,14 @@ const MessageCard = ({ message, onBanane }) => {
             {/* cekilen verideki mesajin istedighimiz kadar yerini gosterme */}
 
             <TouchableOpacity onPress={() => navigation.navigate("MessageDetail", message)}>
+                
+                <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">{message?.text}</Text> 
+
+
                 {/* navigation.navigate('HedefEkran', { param1: 'deger1', param2: 'deger2' }) */}
-                <Text style={styles.title}>{message?.text?.substring(0, 14) + '...'}</Text>
+                {/* <Text style={styles.title}>{message?.text?.substring(0, 14) + '...'}</Text> */}
+                {/* bir satir olsun dedik.ve tail yani satir bitimi ... koyar */}
+                
             </TouchableOpacity>
 
 
@@ -51,6 +57,7 @@ const MessageCard = ({ message, onBanane }) => {
                     <Text style={styles.dislike_text}>
                         Bana ne?
                     </Text>
+                    
 
                 </TouchableOpacity>
             </View>
