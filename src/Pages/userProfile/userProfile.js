@@ -2,7 +2,9 @@ import React from "react";
 import { Text, SafeAreaView, View, Image, ImageBackground, Button, Alert, TouchableOpacity, StyleSheet } from "react-native";
 import Buton from "../../Components/Button";
 
-const userProfile = () => {
+const UserProfile = ({route, navigation}) => {
+
+    const data = route.params;
     
     return(
         <ImageBackground source={require('../../Assets/cr2.png')} style={styles.backgroundImage}>
@@ -16,7 +18,8 @@ const userProfile = () => {
 
                         <View style={styles.userContainer}>
                             {/* <Text style={styles.username}>{contentObject.username}</Text> */}
-                            <Text style={styles.username}>userName</Text>
+                            {/* <Text style={styles.username}>userName</Text> */}
+                            <Text style={styles.username}>{data.username}</Text>
                         </View>
 
                     </View>
@@ -43,7 +46,7 @@ const userProfile = () => {
     )
 }
 
-export default userProfile;
+export default UserProfile;
 
 const styles = StyleSheet.create({
     container: {

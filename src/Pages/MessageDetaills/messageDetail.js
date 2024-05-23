@@ -30,7 +30,8 @@ const MessageDetail = ({ route, navigation }) => {
         <View style={style.inContainer}>
           <Text style={style.text}>{data.text}</Text>
           <View style={style.userContainer}>
-            <TouchableOpacity onPress={()=>navigation.navigate("userProfile")}>
+            <TouchableOpacity onPress={()=>navigation.navigate("userProfile", data)}>  
+            {/* diger taraftan aldigimiz message datasini userprofile a aktardik */}
               <Text style={style.username}>{data.username}</Text>
             </TouchableOpacity>
           </View>
