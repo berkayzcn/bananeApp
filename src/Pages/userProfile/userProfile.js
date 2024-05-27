@@ -1,25 +1,52 @@
-import React from "react";
-import { Text, SafeAreaView, View, Image, ImageBackground, Button, Alert, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, SafeAreaView, View, Image, ImageBackground, Button, Alert, TouchableOpacity, StyleSheet, FlatList } from "react-native";
 import Buton from "../../Components/Button";
+import firestore from '@react-native-firebase/database'
 
-const UserProfile = ({route, navigation}) => {
+const UserProfile = ({ route, navigation }) => {
 
-    const data = route.params;
-    
-    return(
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchUserData = async (username) => {
+        try {
+            const userCollection = await firestore()
+                .collection('messages')
+                .where('username', '==', username)
+                .get();
+
+            const userData = userCollection.docs.map(doc => doc.data());
+            setData(userData);
+            setLoading(false);
+            
+        } catch (error) {
+            console.error("Error fetching user data: ", error);
+            setLoading(false);
+        }
+    };
+
+    const gelendata = route.params;
+
+    useEffect(() => {
+        // Örnek kullanıcı adı
+        const username = gelendata.username;
+        fetchUserData(username);
+    }, [])
+
+    return (
         <ImageBackground source={require('../../Assets/cr2.png')} style={styles.backgroundImage}>
-             <SafeAreaView>
+            <SafeAreaView>
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         {/* <TouchableOpacity onPress={_openalert}> */}
                         <TouchableOpacity>
-                             <Image source={require('../../Assets/cr2.png')} style={styles.Image} />  
+                            <Image source={require('../../Assets/cr2.png')} style={styles.Image} />
                         </TouchableOpacity>
 
                         <View style={styles.userContainer}>
                             {/* <Text style={styles.username}>{contentObject.username}</Text> */}
                             {/* <Text style={styles.username}>userName</Text> */}
-                            <Text style={styles.username}>{data.username}</Text>
+                            <Text style={styles.username}>{gelendata.username}</Text>
                         </View>
 
                     </View>
@@ -34,15 +61,28 @@ const UserProfile = ({route, navigation}) => {
                             {/* <Button title="tikla" onPress={goster}/>  */}
                         </View>
 
-                        <View>
-                        </View>
+                      
 
 
                     </View>
                 </View>
+
+                <View style={styles.container}>
+                    <Text>asdfasdf</Text>
+                    <FlatList
+                        data={data}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => (
+                            <View>
+                                <Text>Username: {item.text}</Text>
+                                <Text>Other Data: {item.text}</Text>
+                            </View>
+                        )}
+                    />
+                </View>
             </SafeAreaView>
         </ImageBackground>
-        
+
     )
 }
 

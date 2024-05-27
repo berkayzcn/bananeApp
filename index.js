@@ -3,7 +3,11 @@
  */
 
 import {AppRegistry} from 'react-native';
+
 import App from './src/App';
+
+//import App from './src/animationDeneme';
+
 //import App from './src/Pages/userProfile';
 //import App from './src/likedenemeleri';
 //import App from './src/Pages/Sign';

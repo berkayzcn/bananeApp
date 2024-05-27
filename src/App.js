@@ -20,6 +20,8 @@ import Messages from "./Pages/Messages.js/messages";
 import MessageDetail from "./Pages/MessageDetaills/messageDetail";
 import userProfile from "./Pages/userProfile";
 
+import KullaniciDeneme from "./kullaniciDeneme"
+
 const App = () => {
 
   const [userSession, setUserSession] = useState();
@@ -97,6 +99,7 @@ const App = () => {
       <Stack.Screen name="Profile" component={Profile} options={{ headerShown: true }} /> 
       <Stack.Screen name="MessageDetail" component={MessageDetail} options={{ headerShown: true }} /> 
        <Stack.Screen name="userProfile" component={userProfile}/> 
+       <Stack.Screen name="kullaniciDeneme" component={KullaniciDeneme}/> 
 
 
       </Stack.Navigator>
