@@ -11,9 +11,10 @@ function Loading() {
         style = {{
             width : 400,
             height : 800,
+
           
         }}
-        source={require('../../Asstes/loading.json')} autoPlay 
+        source={require('../../Asstes/loadingYeni.json')} autoPlay 
         />
         {/* autoplay bu comp render edildigi anda calistirmak icin*/}
     </View>

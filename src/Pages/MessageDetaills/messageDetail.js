@@ -16,14 +16,7 @@ const MessageDetail = ({ route, navigation }) => {
 
   const data = route.params;
 
-  const auth = AuthName()
-
-  const currentUserName = AuthName().currentUser.email
-
-  const contentObject = {
-    username: currentUserName.split('@')[0]
-  }
-
+  
   return (
     <ImageBackground source={require('../../Assets/cr2.png')} style={style.backgroundImage}>
       <SafeAreaView style={style.container}>
@@ -44,6 +37,15 @@ const MessageDetail = ({ route, navigation }) => {
 
 
 }
+
+
+// const auth = AuthName()
+
+  // const currentUserName = AuthName().currentUser.email
+
+  // const contentObject = {
+  //   username: currentUserName.split('@')[0]
+  // }
 
 
 

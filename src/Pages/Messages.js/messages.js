@@ -33,7 +33,7 @@ const Messages = () => {
                 const parsedData = parseContentData(contentData || {})
                 setContentList(parsedData)
             })
-    }, [])
+    },[])
 
     function handleSendContent(content) { //icerik gondermek istedigimiz zaman
         toggleModal();
