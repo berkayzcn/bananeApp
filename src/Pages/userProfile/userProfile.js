@@ -14,16 +14,25 @@ const UserProfile = ({ route, navigation }) => {
 
           const snapshot = await database()
                   .ref('messages')
-                  .orderByChild('username')
+                  .orderByChild('username') //Mesajları username (kullanıcı adı) alanına göre sıralar. Bu, veritabanındaki her mesajın username alanına göre sıralandığı anlamına gelir.
+                  
                   .equalTo(username)
-                  .once('value');
+                    //username değişkeninin değerine eşit olan kullanıcı adlarına sahip mesajları filtreler. Yani, sadece belirli bir kullanıcı adına ait mesajlar alınır.
+                  
+                .once('value');
               
                 const userCollection = [];
-                snapshot.forEach(childSnapshot => {
-                  const user = childSnapshot.val(); //hre kullanici icin llusturulmus id ler altindaki verileri id si ni atarak alir
-                  userCollection.push(user);
+                snapshot.forEach(childSnapshot => { //Her childSnapshot, belirli bir mesajı temsil eder.
+                  
+                    const user = childSnapshot.val(); //hre kullanici icin llusturulmus id ler altindaki verileri id si ni atarak alir
+                  //ifadesi, her mesajın verilerini alır. Bu veri, JavaScript nesnesi olarak döner.
+                  
+                  userCollection.push(user); //Alınan her mesaj verisini userCollection dizisine ekler.
+                  
                 });
 
+                //.orderByChild('username'): Mesajları username (kullanıcı adı) alanına göre sıralar. Bu, veritabanındaki her mesajın username alanına göre sıralandığı anlamına gelir.
+                //.equalTo(username): username değişkeninin değerine eşit olan kullanıcı adlarına sahip mesajları filtreler. Yani, sadece belirli bir kullanıcı adına ait mesajlar alınır.
                 
 
             console.log(userCollection)
@@ -86,16 +95,16 @@ const UserProfile = ({ route, navigation }) => {
                     </View>
                 </View>
 
-                <View style={styles.container}>
+                <View >
     
                     <FlatList
                         data={data}
                         
                     
                         renderItem={({ item }) => (
-                            <View>
+                            <View style={styles.container}>
                                 {/* <Text>Username: {item.username}</Text> */}
-                                <Text>Other Data: {item.text}</Text>
+                                <Text >{item.text}</Text>
                                 
                             </View>
                         )}

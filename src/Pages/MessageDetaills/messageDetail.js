@@ -13,9 +13,7 @@ import AuthName from "@react-native-firebase/auth"
 
 const MessageDetail = ({ route, navigation }) => {
 
-
   const data = route.params;
-
   
   return (
     <ImageBackground source={require('../../Assets/cr2.png')} style={style.backgroundImage}>
