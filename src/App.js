@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, SafeAreaView } from "react-native";
+import { Text, View, SafeAreaView, StyleSheet } from "react-native";
 
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 //import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -69,7 +69,12 @@ const App = () => {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{
+         //headerStyle : {backgroundColor : 'black'},
+         headerStyle : {backgroundColor : '#242222'},
+         headerTitleStyle : {color : 'white', },
+         headerTintColor : '#e0752d'
+      }}>
 
        {/* <Stack.Screen name="Profile" component={Profile} options={{ headerShown: true }} />   */}
 
@@ -78,10 +83,11 @@ const App = () => {
           <Stack.Screen name="AuthStack" component={AuthStack} options={{ headerShown: false }} />
         ) : (
 
-          <Stack.Screen name="Messages" component={Messages} options={(props)=>({
+          <Stack.Screen name="Messages" component={Messages}  options={(props)=>({
             title: 'Dertler Derya',
             headerTintColor: 'black',
             headerRight: () => (
+              // <Icon name="logout" size={30} color="white" onPress={() => auth().signOut()} />
               <Icon name="logout" size={30} color="#e0752d" onPress={() => auth().signOut()} />
               //<Icon name="logout" size={30} color="#e0752d" onPress={() => navigation.openDrawer} />
             ),
@@ -96,9 +102,9 @@ const App = () => {
         )
         }
 
-      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: true }} /> 
+      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: true }}/> 
       <Stack.Screen name="MessageDetail" component={MessageDetail} options={{ headerShown: true }} /> 
-       <Stack.Screen name="userProfile" component={userProfile}/> 
+       <Stack.Screen name="User" component={userProfile}/> 
        <Stack.Screen name="kullaniciDeneme" component={KullaniciDeneme}/> 
 
 
@@ -111,3 +117,10 @@ const App = () => {
 }
 
 export default App;
+
+const styless = StyleSheet.create({
+  tabbackground : {
+    backgroundColor: 'rgba(128, 128, 128, 0.8)', //gri seffaf
+    
+  },
+})

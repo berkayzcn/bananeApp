@@ -22,7 +22,7 @@ const MessageDetail = ({ route, navigation }) => {
           <Text style={style.text}>{data.text}</Text>
           <View style={style.userContainer}>
             {/* <TouchableOpacity onPress={()=>navigation.navigate("userProfile", data)}>   */}
-            <TouchableOpacity onPress={()=>navigation.navigate("userProfile", data)}>  
+            <TouchableOpacity onPress={()=>navigation.navigate("User", data)}>  
             {/* diger taraftan aldigimiz message datasini userprofile a aktardik */}
               <Text style={style.username}>{data.username}</Text>
             </TouchableOpacity>
@@ -71,7 +71,7 @@ const style = StyleSheet.create({
     width: 300,
     height: 400,
     //backgroundColor : 'rgba(0, 0, 255, 0.5)',mavi seffaf
-    backgroundColor: 'rgba(128, 128, 128, 0.8)', //gri seffaf
+    backgroundColor: 'rgba(128, 128, 128, 0.9)', //gri seffaf
     //backgroundColor: 'rgba(255, 119, 0, 0.7)',
     // alignItems : 'center',
     justifyContent: 'center',

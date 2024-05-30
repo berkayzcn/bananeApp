@@ -102,9 +102,9 @@ const UserProfile = ({ route, navigation }) => {
                         
                     
                         renderItem={({ item }) => (
-                            <View style={styles.container}>
+                            <View style={styles.messageContainer}>
                                 {/* <Text>Username: {item.username}</Text> */}
-                                <Text >{item.text}</Text>
+                                <Text style={styles.messageTextColor}>{item.text}</Text>
                                 
                             </View>
                         )}
@@ -123,21 +123,42 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 8,
         borderColor: 'darkblue',
-        borderRadius: 28,
+        borderRadius: 18,
         margin: 5,
         borderWidth: 1,
-        backgroundColor: "white",
+        //backgroundColor: "white",
+        //backgroundColor: "#e0752d",
+        //backgroundColor: "#de7a37",
+        backgroundColor: "#242222",
+        
+    },
 
+    messageContainer: {
+        flexDirection: 'row',
+        padding: 8,
+        borderColor: 'darkblue',
+        borderRadius: 9,
+        margin: 5,
+        borderWidth: 1,
+        //backgroundColor: "white",
+        backgroundColor: "#e0752d",
+    },
+
+    messageTextColor : {
+        color : "white",
+        fontSize : 18,
     },
 
     darlama: {
         fontSize: 20,
-        //margin : 4
+        //margin : 4,
+        color : 'white'
     },
 
     darlamaSayisi: {
         fontSize: 25,
-        fontWeight: '600'
+        fontWeight: '600',
+        color : 'white'
     },
 
     butn: {
@@ -149,6 +170,7 @@ const styles = StyleSheet.create({
         marginTop: 9,
         fontWeight: '500',
         paddingLeft: '7',
+        color : 'white'
         //backgroundColor: 'blue',
         //justifyContent : 'center',
         //alignItems : 'center',
@@ -165,6 +187,7 @@ const styles = StyleSheet.create({
         padding: 10,
         //justifyContent : 'space-evenly'
         //alignItems : ''
+       
     },
 
     imageContainer: {
@@ -178,7 +201,9 @@ const styles = StyleSheet.create({
     postContainer: {
         margin: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        
+
     },
 
     Image: {

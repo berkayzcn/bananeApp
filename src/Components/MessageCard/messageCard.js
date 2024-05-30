@@ -36,7 +36,8 @@ const MessageCard = ({ message, onBanane }) => {
 
             <TouchableOpacity onPress={() => navigation.navigate("MessageDetail", message)}>
                 {/* navigation.navigate('HedefEkran', { param1: 'deger1', param2: 'deger2' }) */}
-                <Text style={styles.title}>{message?.text?.substring(0, 14) + '...'}</Text>
+                <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">{message?.text}</Text> 
+                {/* <Text style={styles.title}>{message?.text?.substring(0, 14) + '...'}</Text> */}
             </TouchableOpacity>
 
 
