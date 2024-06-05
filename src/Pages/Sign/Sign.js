@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, SafeAreaView, ImageBackground } from "react-native";
+import { Text, View, SafeAreaView, ImageBackground, Alert } from "react-native";
 import { Formik } from "formik";
 import autherrorMessage from '../../utils/errorMessages'
 import { showMessage } from "react-native-flash-message";
@@ -19,12 +19,26 @@ const initialFormValues = {
 
 const BanSign = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
-    
+
+    //1
+     const [email, setEmail] = useState('');
+     const [password, setPassord] = useState('');
+
+    //2
+    const validateEmail = (email) => { //mail formatinin kontrol etmek icin
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email);
+    };
+
+
     function handleLogin() {
         navigation.goBack();
     }
 
     async function handleFormSubmit(formvalues) { //buraya gelen formvalues initialformvalues degerlerinin doldurulmus hali olarak geliyor
+
+
+
 
         if (formvalues.password != formvalues.repassword) {
             showMessage({
@@ -34,16 +48,22 @@ const BanSign = ({ navigation }) => {
         }
 
         try {
+            if (validateEmail(formvalues.usermail)) {
+                await auth().createUserWithEmailAndPassword(
+                    formvalues.usermail,
+                    formvalues.password
+                );
 
-            await auth().createUserWithEmailAndPassword(
-                formvalues.usermail,
-                formvalues.password
-            );
+                showMessage({
+                    message: "Kullanici Olusturuldu",
+                    type: 'success',
+                });
 
-            showMessage({
-                message: "Kullanici Olusturuldu",
-                type: 'success',
-            });
+            }
+            else {
+                Alert.alert('regex kontrol')
+            }
+
 
         } catch (error) {
             showMessage({
@@ -53,10 +73,14 @@ const BanSign = ({ navigation }) => {
 
             setLoading(false)
         }
+
+        // else {
+        //     Alert.alert('regex kontroo')
+        // }
     }
 
     return (
-        <ImageBackground source={require('../../Assets/cr2.png')} style = {styles.backgroundImage}>
+        <ImageBackground source={require('../../Assets/cr2.png')} style={styles.backgroundImage}>
 
             <SafeAreaView style={styles.body_container}>
                 <Text style={styles.header}>bana ne!</Text>

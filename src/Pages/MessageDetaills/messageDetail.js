@@ -13,24 +13,16 @@ import AuthName from "@react-native-firebase/auth"
 
 const MessageDetail = ({ route, navigation }) => {
 
-
   const data = route.params;
-
-  const auth = AuthName()
-
-  const currentUserName = AuthName().currentUser.email
-
-  const contentObject = {
-    username: currentUserName.split('@')[0]
-  }
-
+  
   return (
     <ImageBackground source={require('../../Assets/cr2.png')} style={style.backgroundImage}>
       <SafeAreaView style={style.container}>
         <View style={style.inContainer}>
           <Text style={style.text}>{data.text}</Text>
           <View style={style.userContainer}>
-            <TouchableOpacity onPress={()=>navigation.navigate("userProfile", data)}>  
+            {/* <TouchableOpacity onPress={()=>navigation.navigate("userProfile", data)}>   */}
+            <TouchableOpacity onPress={()=>navigation.navigate("User", data)}>  
             {/* diger taraftan aldigimiz message datasini userprofile a aktardik */}
               <Text style={style.username}>{data.username}</Text>
             </TouchableOpacity>
@@ -43,6 +35,15 @@ const MessageDetail = ({ route, navigation }) => {
 
 
 }
+
+
+// const auth = AuthName()
+
+  // const currentUserName = AuthName().currentUser.email
+
+  // const contentObject = {
+  //   username: currentUserName.split('@')[0]
+  // }
 
 
 
@@ -70,7 +71,7 @@ const style = StyleSheet.create({
     width: 300,
     height: 400,
     //backgroundColor : 'rgba(0, 0, 255, 0.5)',mavi seffaf
-    backgroundColor: 'rgba(128, 128, 128, 0.8)', //gri seffaf
+    backgroundColor: 'rgba(128, 128, 128, 0.9)', //gri seffaf
     //backgroundColor: 'rgba(255, 119, 0, 0.7)',
     // alignItems : 'center',
     justifyContent: 'center',

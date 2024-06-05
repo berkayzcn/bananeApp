@@ -8,6 +8,8 @@ import styles from './plusbuttonStyle'
 const PlusButton = ({onPress, icon}) => {
     return(
         <TouchableOpacity style={styles.container} onPress={onPress}>
+            {/* <Icon name={icon} color="white" size={45}/> */}
+            {/* <Icon name={icon} color="#e0752d" size={45}/> */}
             <Icon name={icon} color="white" size={45}/>
         </TouchableOpacity>
     )

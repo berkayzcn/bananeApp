@@ -29,6 +29,8 @@ export default StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
+    padding : 3,
+    margin : 3
   },
   footer:{
       flex:1,
@@ -51,17 +53,18 @@ export default StyleSheet.create({
       borderRadius:25,
       padding:3,
   },
-  dislike_count_text:{
-      color:"white",
-      fontWeight:"bold",
-  },
+  // dislike_count_text:{
+  //     color:"white",
+  //     fontWeight:"bold",
+  // },
   dislike_text:{
-      color:"darkgreen",
+      //color:"#e0752d",
+      color:"#242222",
       fontWeight:"bold"
   },
 
   dislike_count_text:{
-    color:"blue",
+    color:"#242222",
     fontWeight:"bold",
 },
 });

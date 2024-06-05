@@ -3,14 +3,13 @@ import { View, SafeAreaView, Text, ImageBackground, FlatList } from "react-nativ
 import { StyleSheet } from "react-native";
 import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
-
 import PlusButton from "../../Components/PlusButton";
 import ModelInput from "../../Components/MODAL/Modalinput";
 import MessageCard from "../../Components/MessageCard";
 import parseContentData from "../../utils/parseContentData";
-
 import styless from './messagesStyle'
 import { set } from "date-fns/fp/set";
+
 
 const Messages = () => {
     const [ModalVisible, setModalVisible] = useState(false)
@@ -20,20 +19,21 @@ const Messages = () => {
     const [liked, setLiked] = useState(false);
     const currentUser = auth().currentUser;
 
-
     function toggleModal() {
         setModalVisible(!ModalVisible)
     }
+
 
     useEffect(() => { //veri cekme
         database()
             .ref('messages/')
             .on('value', snapshot => {
                 const contentData = snapshot.val();
-                const parsedData = parseContentData(contentData || {})
+                const parsedData = parseContentData(contentData || {}) //cekerkende parse ediyoruz
                 setContentList(parsedData)
             })
-    }, [])
+    },[])
+
 
     function handleSendContent(content) { //icerik gondermek istedigimiz zaman
         toggleModal();
@@ -42,32 +42,14 @@ const Messages = () => {
 
     function sendContent(content) { //veri yukleme
         const userMail = auth().currentUser.email;
-
         const contentObject = {
             text: content,
             username: userMail.split('@')[0],
             date: (new Date()).toISOString(),
-            dislike: 0,
+            dislike: JSON.stringify([]), //json dan string formatina donusturur
         };
         database().ref('messages/').push(contentObject);
     }
-
-
-
-    const checkLikeStatus = () => {
-
-        database()
-            .ref('likes/' + currentUser.uid)
-            .once('value')
-            .then(snapshot => {
-                if (snapshot.exists()) {
-                    setLiked(true);
-                }
-            })
-            .catch(error => {
-                console.error('Error getting like status:', error);
-            });
-    };
 
     const handleLike = () => {
         if (currentUser) {
@@ -85,30 +67,25 @@ const Messages = () => {
     };
 
     function handleBanane(item) {
-        useEffect(() => {
-            if (currentUser) {
-                checkLikeStatus();
-            }
-        }, [currentUser])
+        let updatedDislike = []
+        const username = currentUser.email.split('@')[0]
+        const dislikes = JSON.parse(item?.dislike) //stringden array e ceviriyoruz
 
+        if(dislikes?.filter(x=> x === username).length > 0){ // eger dislike icinde bu user varsa sil
+            updatedDislike = dislikes?.filter(x => x !== username)
+        }else {
+            //updatedDislike = [...dislikes, username]
+            updatedDislike = dislikes
+            updatedDislike.push(username)
+        }
 
         database()
             .ref(`messages/${item.id}/`)
-
-            .update({ dislike: item.dislike + 1 })
+            .update({ dislike: JSON.stringify(updatedDislike) })
             .then(() => {
-
-                setLiked(true)
 
             })
     }
-
-    // function handleBanane(item) {
-
-    //     database()
-    //         .ref(`messages/${item.id}/`)
-    //         .update({ dislike: item.dislike + 1 })
-    // }
 
 
 

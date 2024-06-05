@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { ImageBackground, SafeAreaView, View, Text } from "react-native";
+import { ImageBackground, SafeAreaView, View, Text, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import auth from '@react-native-firebase/auth'
 import { showMessage } from "react-native-flash-message";
@@ -11,6 +11,7 @@ import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 
 import styles from './LoginStyle'
+import Loading from "../../Components/Loading";
 
 const initialFormValues = {
     usermail: '',
@@ -18,11 +19,11 @@ const initialFormValues = {
 }
 
 
-const LogIn = ({navigation}) => {
+const LogIn = ({ navigation }) => {
     const [looading, setLoading] = useState(false)
 
-    function goSignUp () {
-      navigation.navigate('Sign')
+    function goSignUp() {
+        navigation.navigate('Sign')
     }
 
     async function handleFormSubmit(formvalues) { //buraya gelen formvalues initialformvalues degerlerinin doldurulmus hali olarak geliyor
@@ -43,9 +44,14 @@ const LogIn = ({navigation}) => {
         }
     }
 
+    if(looading){
+            return <View style={styless.lottieContainer}>
+                <Loading />
+            </View>
+    }
 
     return (
-        <ImageBackground source={require('../../Assets/cr2.png')} style = {styles.backgroundImage}>
+        <ImageBackground source={require('../../Assets/cr2.png')} style={styles.backgroundImage}>
 
             <SafeAreaView style={styles.body_container}>
                 <Text style={styles.header}>bana ne!</Text>
@@ -80,3 +86,22 @@ const LogIn = ({navigation}) => {
 }
 
 export default LogIn;
+
+const styless = StyleSheet.create({
+    lottieContainer: {
+        position: 'absolute',
+        backgroundColor: 'white',
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+        justifyContent:'center',
+        alignItems:'center',
+        zIndex:1,
+
+
+        // top: '50%',
+        // left: '50%',
+        //transform: [{ translateX: -50 }, { translateY: -50 }],
+    },
+})
