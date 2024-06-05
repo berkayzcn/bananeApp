@@ -13,7 +13,7 @@ const MessageCard = ({ message, onBanane }) => {
     const formattedDate = message?.date
         ? formatDistance(parseISO(message?.date), new Date(), {
             addSuffix: true,
-            //locale: tr,
+            locale: tr,
         })
         : ""
 
@@ -24,24 +24,16 @@ const MessageCard = ({ message, onBanane }) => {
 
             <View style={styles.inner_container}>
                 <Text style={styles.user}>{message?.username}</Text>
-                {/* <Text style={styles.date}>{message.date}</Text> */}
                 <Text style={styles.date}>{formattedDate}</Text>
             </View>
 
-            {/* <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message.id)}> */}
-            {/* <TouchableOpacity onPress={()=> navigation.navigate("MessageDetail", message)}>
-                <Text style={styles.title}>{message.text.substring(0, 14) + '...'}</Text>
-            </TouchableOpacity> */}
-            {/* cekilen verideki mesajin istedighimiz kadar yerini gosterme */}
 
             <TouchableOpacity onPress={() => navigation.navigate("MessageDetail", message)}>
                 
-                {/* <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">{message?.text}</Text>  */}
 
-
-                {/* navigation.navigate('HedefEkran', { param1: 'deger1', param2: 'deger2' }) */}
                 <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">{message?.text}</Text> 
-                {/* <Text style={styles.title}>{message?.text?.substring(0, 14) + '...'}</Text> */}
+            {/* cekilen verideki mesajin istedighimiz kadar yerini gosterme */}
+
             </TouchableOpacity>
 
 
