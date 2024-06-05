@@ -35,7 +35,7 @@ const BanSign = ({ navigation }) => {
         navigation.goBack();
     }
 
-    async function handleFormSubmit(formvalues) { //buraya gelen formvalues initialformvalues degerlerinin doldurulmus hali olarak geliyor
+    async function handleFormSubmit(formvalues) { 
 
 
 
@@ -67,16 +67,13 @@ const BanSign = ({ navigation }) => {
 
         } catch (error) {
             showMessage({
-                message: autherrorMessage(error.code), //error kodunu parameter olarak aldik
+                message: autherrorMessage(error.code), 
                 type: 'danger',
             });
 
             setLoading(false)
         }
 
-        // else {
-        //     Alert.alert('regex kontroo')
-        // }
     }
 
     return (

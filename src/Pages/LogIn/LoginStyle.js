@@ -41,15 +41,5 @@ export default StyleSheet.create({
 
 
     
-    // buttonContainer : {
-    //     flexDirection : 'row',
-    //     padding : 5,
-    //     margin : 10,
-    //     justifyContent : 'space-evenly'
-    // },
 
-    // backgroundImage: {
-    //     flex: 1,
-    //     justifyContent: 'center',
-    //   },
 })

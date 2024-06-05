@@ -14,26 +14,21 @@ const UserProfile = ({ route, navigation }) => {
 
           const snapshot = await database()
                   .ref('messages')
-                  .orderByChild('username') //Mesajları username (kullanıcı adı) alanına göre sıralar. Bu, veritabanındaki her mesajın username alanına göre sıralandığı anlamına gelir.
                   
                   .equalTo(username)
-                    //username değişkeninin değerine eşit olan kullanıcı adlarına sahip mesajları filtreler. Yani, sadece belirli bir kullanıcı adına ait mesajlar alınır.
                   
                 .once('value');
               
                 const userCollection = [];
-                snapshot.forEach(childSnapshot => { //Her childSnapshot, belirli bir mesajı temsil eder.
+                snapshot.forEach(childSnapshot => { 
                   
-                    const user = childSnapshot.val(); //hre kullanici icin llusturulmus id ler altindaki verileri id si ni atarak alir
-                  //ifadesi, her mesajın verilerini alır. Bu veri, JavaScript nesnesi olarak döner.
+                    const user = childSnapshot.val(); 
                   
-                  userCollection.push(user); //Alınan her mesaj verisini userCollection dizisine ekler.
+                  userCollection.push(user); 
                   
                 });
 
-                //.orderByChild('username'): Mesajları username (kullanıcı adı) alanına göre sıralar. Bu, veritabanındaki her mesajın username alanına göre sıralandığı anlamına gelir.
-                //.equalTo(username): username değişkeninin değerine eşit olan kullanıcı adlarına sahip mesajları filtreler. Yani, sadece belirli bir kullanıcı adına ait mesajlar alınır.
-                
+               
 
             console.log(userCollection)
                 
@@ -66,14 +61,12 @@ const UserProfile = ({ route, navigation }) => {
             <SafeAreaView>
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
-                        {/* <TouchableOpacity onPress={_openalert}> */}
                         <TouchableOpacity>
                             <Image source={require('../../Assets/cr2.png')} style={styles.Image} />
                         </TouchableOpacity>
 
                         <View style={styles.userContainer}>
-                            {/* <Text style={styles.username}>{contentObject.username}</Text> */}
-                            {/* <Text style={styles.username}>userName</Text> */}
+                         
                             <Text style={styles.username}>{gelendata.username}</Text>
                         </View>
 
@@ -85,8 +78,7 @@ const UserProfile = ({ route, navigation }) => {
                             <Text style={styles.darlama}>Dert sayisi</Text>
                             <Text style={styles.darlamaSayisi}>{data?.length || 0 }</Text>
                             <Buton style={styles.butn} text={"     Darla     "} theme="primary" />
-                            {/* <Buton style={styles.butn} text={"     Darla     "} theme="primary" onPress={goster} /> */}
-                            {/* <Button title="tikla" onPress={goster}/>  */}
+                 
                         </View>
 
                       
@@ -103,7 +95,6 @@ const UserProfile = ({ route, navigation }) => {
                     
                         renderItem={({ item }) => (
                             <View style={styles.messageContainer}>
-                                {/* <Text>Username: {item.username}</Text> */}
                                 <Text style={styles.messageTextColor}>{item.text}</Text>
                                 
                             </View>
@@ -126,9 +117,7 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         margin: 5,
         borderWidth: 1,
-        //backgroundColor: "white",
-        //backgroundColor: "#e0752d",
-        //backgroundColor: "#de7a37",
+       
         backgroundColor: "#242222",
         
     },

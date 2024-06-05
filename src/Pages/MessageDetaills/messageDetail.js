@@ -37,13 +37,6 @@ const MessageDetail = ({ route, navigation }) => {
 }
 
 
-// const auth = AuthName()
-
-  // const currentUserName = AuthName().currentUser.email
-
-  // const contentObject = {
-  //   username: currentUserName.split('@')[0]
-  // }
 
 
 

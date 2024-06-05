@@ -1,6 +1,5 @@
 export default function (data) {//gelen datayi bir array formayina cevirmke sityoruz
-    //nobjedt.keys asil bir obje verirsek verelim bunun keylerini direk array olarak doenr
-    //burda data verip onun keylerni array oalrak aliyoruz
+   
     return Object.keys(data).map(key => {
         return {
             id: key, //key i id olarak ata dedik
@@ -14,4 +13,3 @@ export default function (data) {//gelen datayi bir array formayina cevirmke sity
         });
 }
 
-//js de map bir arrray return edere geriy

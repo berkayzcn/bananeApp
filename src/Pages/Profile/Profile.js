@@ -29,29 +29,25 @@ const Profile = () => {
 
             const snapshot = await database()
                 .ref('messages')
-                .orderByChild('username') //Mesajları username (kullanıcı adı) alanına göre sıralar. Bu, veritabanındaki her mesajın username alanına göre sıralandığı anlamına gelir.
+                .orderByChild('username')
 
                 .equalTo(username)
-                //username değişkeninin değerine eşit olan kullanıcı adlarına sahip mesajları filtreler. Yani, sadece belirli bir kullanıcı adına ait mesajlar alınır.
 
                 .once('value');
 
             const userCollection = [];
-            snapshot.forEach(childSnapshot => { //Her childSnapshot, belirli bir mesajı temsil eder.
+            snapshot.forEach(childSnapshot => {
 
-                const user = childSnapshot.val(); //hre kullanici icin llusturulmus id ler altindaki verileri id si ni atarak alir
-                //ifadesi, her mesajın verilerini alır. Bu veri, JavaScript nesnesi olarak döner.
+                const user = childSnapshot.val();
 
-                userCollection.push(user); //Alınan her mesaj verisini userCollection dizisine ekler.
+                userCollection.push(user);
 
             });
 
-            //.orderByChild('username'): Mesajları username (kullanıcı adı) alanına göre sıralar. Bu, veritabanındaki her mesajın username alanına göre sıralandığı anlamına gelir.
-            //.equalTo(username): username değişkeninin değerine eşit olan kullanıcı adlarına sahip mesajları filtreler. Yani, sadece belirli bir kullanıcı adına ait mesajlar alınır.
 
 
             console.log(userCollection)
-            
+
             setData(userCollection);
             setLoading(false)
             //setLoading(<Loading/>);
@@ -65,8 +61,7 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        //const username = currentUserName
-        const username = currentUserName.split('@')[0] //currentusername i String olarak alip istek atmamiz gerekiyor 
+        const username = currentUserName.split('@')[0]
         console.log(username)
         fetchUserData(username)
     }, [])
@@ -93,7 +88,7 @@ const Profile = () => {
             cropping: true,
         })
             .then((image) => {
-                setSelectedImage(image.path);  //kirpma ekranin kirpilmis resmin yolunu yani pathini selectedImage de yakalabiliyroz
+                setSelectedImage(image.path);
                 setHeight(height);
                 setWidth(width);
 
