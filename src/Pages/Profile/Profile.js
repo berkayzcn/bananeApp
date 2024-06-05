@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import Buton from "../../Components/Button";
 import AuthName from '@react-native-firebase/auth'
 import { useState } from "react";
+import Loading from "../../Components/Loading";
 
 import ImagePicker from "react-native-image-crop-picker";
 
@@ -50,14 +51,16 @@ const Profile = () => {
 
 
             console.log(userCollection)
-
+            
             setData(userCollection);
             setLoading(false)
+            //setLoading(<Loading/>);
 
 
         } catch (error) {
             console.error("Error fetching user data: ", error);
             setLoading(false);
+            //setLoading(<Loading/>);
         }
     }
 

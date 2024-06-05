@@ -41,22 +41,6 @@ const App = () => {
     )
   }
 
-  // const DrawerStack = () => {
-  //   return(
-  //     <Drawer.Navigator>
-  //       <Drawer.Screen name="Profile" component={Profile}/>
-  //       <Drawer.Screen name="LogOut" component={Lo}/>
-
-  //     </Drawer.Navigator>
-  //   )
-  // }
-
-  // const goToProfile = (props) => {
-  //   const { navigation } = props
-  //   return (
-  //     navigation.navigate("Profile")
-  //   )
-  // }
 
   const goToProfile = (props) => {
     const {navigation} = props
@@ -120,7 +104,27 @@ export default App;
 
 const styless = StyleSheet.create({
   tabbackground : {
-    backgroundColor: 'rgba(128, 128, 128, 0.8)', //gri seffaf
-    
+    backgroundColor: 'rgba(128, 128, 128, 0.8)', //gri seffaf    
   },
 })
+
+
+
+
+
+  // const DrawerStack = () => {
+  //   return(
+  //     <Drawer.Navigator>
+  //       <Drawer.Screen name="Profile" component={Profile}/>
+  //       <Drawer.Screen name="LogOut" component={Lo}/>
+
+  //     </Drawer.Navigator>
+  //   )
+  // }
+
+  // const goToProfile = (props) => {
+  //   const { navigation } = props
+  //   return (
+  //     navigation.navigate("Profile")
+  //   )
+  // }
